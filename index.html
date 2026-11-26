@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -5,37 +6,243 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>یاران امام زمان (عج)</title>
 <style>
-body {
-  font-family: Tahoma, sans-serif;
-  background: #edf5ef;
-  text-align: center;
-  padding: 35px 15px;
-  color: #174b31;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Tahoma,sans-serif;
+  background:#f1f5ef;
+  color:#243b2c;
 }
-.container {
-  max-width: 500px;
-  margin: auto;
-  background: white;
-  padding: 25px;
-  border-radius: 20px;
+header{
+  background:linear-gradient(135deg,#064b32,#08734a);
+  color:white;
+  padding:25px 18px 35px;
+  text-align:center;
+  border-radius:0 0 28px 28px;
 }
-h1 { color: #176b3a; }
-button {
-  background: #176b3a;
-  color: white;
-  border: 0;
-  padding: 13px 25px;
-  border-radius: 12px;
-  font-size: 17px;
+.logo{
+  width:76px;height:76px;
+  margin:auto auto 12px;
+  border:2px solid #d9bd73;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#f3d994;
+  font-size:29px;
+  font-weight:bold;
+}
+header h1{font-size:22px;margin:8px 0}
+header p{font-size:13px;color:#e6eadc}
+main{
+  max-width:540px;
+  margin:auto;
+  padding:18px 15px 35px;
+}
+.welcome{
+  background:white;
+  border-radius:18px;
+  padding:22px 15px;
+  text-align:center;
+  box-shadow:0 3px 14px #0000000c;
+}
+.welcome h2{
+  color:#08613e;
+  font-size:20px;
+  line-height:1.9;
+  margin:0 0 8px;
+}
+.welcome p{font-size:13px;color:#68776c;line-height:2}
+.date{
+  color:#98752c;
+  font-size:13px;
+  margin-top:12px;
+}
+.section-title{
+  font-size:17px;
+  color:#075c3c;
+  margin:25px 3px 13px;
+}
+.activity{
+  background:white;
+  border:1px solid #e6ebe3;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:11px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.activity input{
+  width:20px;height:20px;
+  accent-color:#08734a;
+}
+.activity label{
+  flex:1;
+  font-size:14px;
+  line-height:2;
+  cursor:pointer;
+}
+.activity small{
+  display:block;
+  color:#8a968c;
+  font-size:11px;
+}
+button{
+  border:0;
+  border-radius:13px;
+  padding:15px;
+  width:100%;
+  background:#08734a;
+  color:white;
+  font-size:16px;
+  font-family:inherit;
+  cursor:pointer;
+}
+button:active{opacity:.8}
+.progress{
+  background:white;
+  padding:17px;
+  border-radius:15px;
+  margin-top:17px;
+}
+.progress p{font-size:13px}
+.track{
+  height:9px;
+  background:#e4eae3;
+  border-radius:10px;
+  overflow:hidden;
+}
+.fill{
+  height:100%;
+  width:0%;
+  background:#c5a34d;
+  transition:.3s;
+}
+.note{
+  text-align:center;
+  font-size:12px;
+  color:#7c887e;
+  line-height:2;
+  margin-top:25px;
+}
+footer{
+  background:#064b32;
+  color:#e7e9dc;
+  text-align:center;
+  padding:18px;
+  font-size:12px;
 }
 </style>
 </head>
 <body>
-<div class="container">
-<h1>یاران امام زمان (عج)</h1>
-<h2>امروز برای امام زمان (عج) چی کردی؟</h2>
-<p>هر روز یک قدم برای نزدیک‌تر شدن به امام زمان (عج)</p>
-<button>مشاهده فعالیت‌های امروز</button>
-</div>
+
+<header>
+  <div class="logo">ر</div>
+  <h1>یاران امام زمان (عج)</h1>
+  <p>هیئت رایةالهدی</p>
+</header>
+
+<main>
+  <section class="welcome">
+    <h2>امروز برای امام زمان (عج) چی کردی؟</h2>
+    <p>هر روز یک قدم کوچک برای رضایت و خشنودی امام زمانمان برداریم.</p>
+    <div class="date" id="today"></div>
+  </section>
+
+  <h3 class="section-title">🌱 فعالیت‌های پیشنهادی امروز</h3>
+
+  <div id="activities">
+    <div class="activity">
+      <input type="checkbox" class="task">
+      <label>خواندن دعای فرج
+        <small>برای سلامتی و ظهور امام زمان (عج)</small>
+      </label>
+    </div>
+
+    <div class="activity">
+      <input type="checkbox" class="task">
+      <label>قرائت قرآن کریم
+        <small>حداقل چند آیه با توجه و تدبر</small>
+      </label>
+    </div>
+
+    <div class="activity">
+      <input type="checkbox" class="task">
+      <label>صدقه برای سلامتی امام زمان (عج)
+        <small>به نیت سلامتی و تعجیل در فرج</small>
+      </label>
+    </div>
+
+    <div class="activity">
+      <input type="checkbox" class="task">
+      <label>ترک یک گناه
+        <small>یک قدم برای اصلاح رفتار و اخلاق</small>
+      </label>
+    </div>
+
+    <div class="activity">
+      <input type="checkbox" class="task">
+      <label>خدمت به پدر و مادر یا دیگران
+        <small>با یک کار خوب و محبت‌آمیز</small>
+      </label>
+    </div>
+
+    <div class="activity">
+      <input type="checkbox" class="task">
+      <label>فرستادن صلوات
+        <small>به نیت تعجیل در فرج</small>
+      </label>
+    </div>
+  </div>
+
+  <section class="progress">
+    <p>میزان فعالیت امروز: <strong id="count">۰ از ۶</strong></p>
+    <div class="track">
+      <div class="fill" id="fill"></div>
+    </div>
+  </section>
+
+  <button style="margin-top:18px" onclick="submitTasks()">
+    ثبت فعالیت‌های امروز
+  </button>
+
+  <p class="note">
+    هر قدم نیک، قدمی در مسیر بندگی خداوند است.<br>
+    اللهم عجل لولیک الفرج
+  </p>
+</main>
+
+<footer>
+  هیئت رایةالهدی | برنامک یاران امام زمان (عج)
+</footer>
+
+<script>
+const tasks = document.querySelectorAll('.task');
+
+function updateProgress(){
+  const done = [...tasks].filter(t=>t.checked).length;
+  document.getElementById('count').textContent =
+    done.toLocaleString('fa-IR') + ' از ۶';
+  document.getElementById('fill').style.width =
+    (done/6*100)+'%';
+}
+
+tasks.forEach(t=>t.addEventListener('change',updateProgress));
+
+function submitTasks(){
+  const done = [...tasks].filter(t=>t.checked).length;
+  if(done===0){
+    alert('لطفاً حداقل یک فعالیت را انتخاب کنید.');
+    return;
+  }
+  alert('آفرین! '+done.toLocaleString('fa-IR')+
+  ' فعالیت را انتخاب کردید. خداوند از شما قبول کند. 🌹');
+}
+
+document.getElementById('today').textContent =
+  'امروز: '+new Date().toLocaleDateString('fa-IR');
+
+</script>
 </body>
 </html>
