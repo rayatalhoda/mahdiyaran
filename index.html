@@ -135,7 +135,6 @@ footer{
 }
 </style>
 <script src="https://developer.eitaa.com/eitaa-web-app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -152,10 +151,6 @@ footer{
     <div class="date" id="today"></div>
   </section>
 
-
-  <section class="welcome" id="loginStatus" style="margin-top:14px;padding:14px" role="status" aria-live="polite">
-    <p id="loginMessage">در حال بررسی وضعیت ورود...</p>
-  </section>
 
   <h3 class="section-title">🌱 فعالیت‌های پیشنهادی امروز</h3>
 
@@ -250,104 +245,6 @@ function submitTasks(){
 document.getElementById('today').textContent =
   'امروز: '+new Date().toLocaleDateString('fa-IR');
 
-// تنظیمات عمومی پروژه؛ کلید Publishable برای استفاده در مرورگر طراحی شده است.
-const SUPABASE_URL = 'https://kymszknggtztnkavcfgx.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_iOCQ4MT7v5RKSqDs2X25Wg_XX5bdpkl';
-const LOGIN_FUNCTION_URL = SUPABASE_URL + '/functions/v1/eitaa-login';
-
-function showLoginMessage(message, state) {
-  const box = document.getElementById('loginStatus');
-  const messageEl = document.getElementById('loginMessage');
-  messageEl.textContent = message;
-  box.dataset.state = state || 'info';
-}
-
-async function initializeEitaaLogin() {
-  try {
-    const webApp = window.Eitaa && window.Eitaa.WebApp
-      ? window.Eitaa.WebApp
-      : null;
-
-    if (webApp) {
-      if (typeof webApp.ready === 'function') webApp.ready();
-      if (typeof webApp.expand === 'function') webApp.expand();
-    }
-
-    if (!window.supabase || typeof window.supabase.createClient !== 'function') {
-      throw new Error('Supabase client library did not load');
-    }
-
-    const supabaseClient = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
-    );
-
-    const { data: sessionData, error: sessionError } =
-      await supabaseClient.auth.getSession();
-
-    if (sessionError) throw sessionError;
-
-    if (sessionData && sessionData.session) {
-      showLoginMessage('ورود شما با موفقیت انجام شده است. 🌹', 'success');
-      return;
-    }
-
-    const initData = webApp && typeof webApp.initData === 'string'
-      ? webApp.initData
-      : '';
-
-    if (!initData) {
-      showLoginMessage(
-        'برای ورود، لطفاً برنامک را از داخل پیام‌رسان ایتا باز کنید.',
-        'info'
-      );
-      return;
-    }
-
-    showLoginMessage('در حال بررسی امن اطلاعات ورود شما...', 'loading');
-
-    const response = await fetch(LOGIN_FUNCTION_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_PUBLISHABLE_KEY
-      },
-      body: JSON.stringify({ initData })
-    });
-
-    const result = await response.json().catch(() => ({}));
-
-    if (!response.ok) {
-      throw new Error(result.error || 'Eitaa authentication request failed');
-    }
-
-    if (!result.token_hash || result.type !== 'magiclink') {
-      throw new Error('Unexpected authentication response');
-    }
-
-    const { data: authData, error: authError } =
-      await supabaseClient.auth.verifyOtp({
-        token_hash: result.token_hash,
-        type: 'magiclink'
-      });
-
-    if (authError) throw authError;
-
-    if (!authData || !authData.session) {
-      throw new Error('Supabase session was not created');
-    }
-
-    showLoginMessage('ورود شما با موفقیت از طریق ایتا انجام شد. 🌹', 'success');
-  } catch (error) {
-    console.error('Eitaa login error:', error);
-    showLoginMessage(
-      'ورود انجام نشد. لطفاً اتصال اینترنت و اجرای برنامک از داخل ایتا را بررسی کنید؛ سپس دوباره تلاش کنید.',
-      'error'
-    );
-  }
-}
-
-initializeEitaaLogin();
 </script>
 </body>
 </html>
