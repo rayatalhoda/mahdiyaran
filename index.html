@@ -1,249 +1,165 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>یاران امام زمان (عج)</title>
+<title>یاران امام زمان (عج) | هیئت رایةالهدی</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Tahoma,sans-serif;
-  background:#f1f5ef;
-  color:#243b2c;
-}
-header{
-  background:linear-gradient(135deg,#064b32,#08734a);
-  color:white;
-  padding:25px 18px 35px;
-  text-align:center;
-  border-radius:0 0 28px 28px;
-}
-.logo{
-  width:76px;height:76px;
-  margin:auto auto 12px;
-  border:2px solid #d9bd73;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#f3d994;
-  font-size:29px;
-  font-weight:bold;
-}
-header h1{font-size:22px;margin:8px 0}
-header p{font-size:13px;color:#e6eadc}
-main{
-  max-width:540px;
-  margin:auto;
-  padding:18px 15px 35px;
-}
-.welcome{
-  background:white;
-  border-radius:18px;
-  padding:22px 15px;
-  text-align:center;
-  box-shadow:0 3px 14px #0000000c;
-}
-.welcome h2{
-  color:#08613e;
-  font-size:20px;
-  line-height:1.9;
-  margin:0 0 8px;
-}
-.welcome p{font-size:13px;color:#68776c;line-height:2}
-.date{
-  color:#98752c;
-  font-size:13px;
-  margin-top:12px;
-}
-.section-title{
-  font-size:17px;
-  color:#075c3c;
-  margin:25px 3px 13px;
-}
-.activity{
-  background:white;
-  border:1px solid #e6ebe3;
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:11px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.activity input{
-  width:20px;height:20px;
-  accent-color:#08734a;
-}
-.activity label{
-  flex:1;
-  font-size:14px;
-  line-height:2;
-  cursor:pointer;
-}
-.activity small{
-  display:block;
-  color:#8a968c;
-  font-size:11px;
-}
-button{
-  border:0;
-  border-radius:13px;
-  padding:15px;
-  width:100%;
-  background:#08734a;
-  color:white;
-  font-size:16px;
-  font-family:inherit;
-  cursor:pointer;
-}
-button:active{opacity:.8}
-.progress{
-  background:white;
-  padding:17px;
-  border-radius:15px;
-  margin-top:17px;
-}
-.progress p{font-size:13px}
-.track{
-  height:9px;
-  background:#e4eae3;
-  border-radius:10px;
-  overflow:hidden;
-}
-.fill{
-  height:100%;
-  width:0%;
-  background:#c5a34d;
-  transition:.3s;
-}
-.note{
-  text-align:center;
-  font-size:12px;
-  color:#7c887e;
-  line-height:2;
-  margin-top:25px;
-}
-footer{
-  background:#064b32;
-  color:#e7e9dc;
-  text-align:center;
-  padding:18px;
-  font-size:12px;
-}
+body{margin:0;font-family:Tahoma,sans-serif;background:#f1f5ef;color:#243b2c}
+header{background:linear-gradient(135deg,#064b32,#08734a);color:white;padding:25px 18px 35px;text-align:center;border-radius:0 0 28px 28px}
+.logo{width:76px;height:76px;margin:auto auto 12px;border:2px solid #d9bd73;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#f3d994;font-size:29px;font-weight:bold}
+header h1{font-size:22px;margin:8px 0}header p{font-size:13px;color:#e6eadc}
+main{max-width:540px;margin:auto;padding:18px 15px 35px}
+.welcome,.panel,.activity,.progress{background:white;border-radius:18px;padding:18px;margin-bottom:13px;box-shadow:0 3px 14px #0000000c}
+.welcome{text-align:center}.welcome h2{color:#08613e;font-size:20px;line-height:1.9;margin:0 0 8px}
+.welcome p,.hint{font-size:13px;color:#68776c;line-height:2}.date{color:#98752c;font-size:13px;margin-top:12px}
+.section-title{font-size:17px;color:#075c3c;margin:25px 3px 13px}
+.activity{border:1px solid #e6ebe3;padding:14px;display:flex;align-items:center;gap:12px}
+.activity input{width:20px;height:20px;accent-color:#08734a}.activity label{flex:1;font-size:14px;line-height:2;cursor:pointer}
+.activity small{display:block;color:#8a968c;font-size:11px}
+button{border:0;border-radius:13px;padding:14px;width:100%;background:#08734a;color:white;font-size:15px;font-family:inherit;cursor:pointer;margin-top:10px}
+button.secondary{background:#e8eee8;color:#24533b}button:disabled{opacity:.55;cursor:wait}
+input[type=text]{width:100%;padding:13px;border:1px solid #ccd8ce;border-radius:12px;font:inherit;margin:8px 0}
+.progress p{font-size:13px}.track{height:9px;background:#e4eae3;border-radius:10px;overflow:hidden}.fill{height:100%;width:0%;background:#c5a34d;transition:.3s}
+.status{padding:12px;border-radius:12px;background:#eef5ef;color:#24533b;font-size:13px;line-height:1.9;margin:12px 0}
+.status.error{background:#fff0ed;color:#9b3426}.hidden{display:none!important}
+.note{text-align:center;font-size:12px;color:#7c887e;line-height:2;margin-top:25px}
+footer{background:#064b32;color:#e7e9dc;text-align:center;padding:18px;font-size:12px}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://developer.eitaa.com/eitaa-web-app.js"></script>
 </head>
 <body>
-
-<header>
-  <div class="logo">ر</div>
-  <h1>یاران امام زمان (عج)</h1>
-  <p>هیئت رایةالهدی</p>
-</header>
-
+<header><div class="logo">ر</div><h1>یاران امام زمان (عج)</h1><p>هیئت رایةالهدی</p></header>
 <main>
-  <section class="welcome">
-    <h2>امروز برای امام زمان (عج) چی کردی؟</h2>
-    <p>هر روز یک قدم کوچک برای رضایت و خشنودی امام زمانمان برداریم.</p>
-    <div class="date" id="today"></div>
-  </section>
-
-  <h3 class="section-title">🌱 فعالیت‌های پیشنهادی امروز</h3>
-
-  <div id="activities">
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>خواندن دعای فرج
-        <small>برای سلامتی و ظهور امام زمان (عج)</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>قرائت قرآن کریم
-        <small>حداقل چند آیه با توجه و تدبر</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>صدقه برای سلامتی امام زمان (عج)
-        <small>به نیت سلامتی و تعجیل در فرج</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>ترک یک گناه
-        <small>یک قدم برای اصلاح رفتار و اخلاق</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>خدمت به پدر و مادر یا دیگران
-        <small>با یک کار خوب و محبت‌آمیز</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>فرستادن صلوات
-        <small>به نیت تعجیل در فرج</small>
-      </label>
-    </div>
-  </div>
-
-  <section class="progress">
-    <p>میزان فعالیت امروز: <strong id="count">۰ از ۶</strong></p>
-    <div class="track">
-      <div class="fill" id="fill"></div>
-    </div>
-  </section>
-
-  <button style="margin-top:18px" onclick="submitTasks()">
-    ثبت فعالیت‌های امروز
-  </button>
-
-  <p class="note">
-    هر قدم نیک، قدمی در مسیر بندگی خداوند است.<br>
-    اللهم عجل لولیک الفرج
-  </p>
+<section class="welcome">
+<h2>امروز برای امام زمان (عج) چی کردی؟</h2>
+<p>هر روز یک قدم کوچک برای رضایت و خشنودی امام زمانمان برداریم.</p>
+<div class="date" id="today"></div>
+</section>
+<section id="loginPanel" class="panel">
+<h3 class="section-title" style="margin-top:0">ورود اعضا</h3>
+<p class="hint">برای ثبت فعالیت‌ها، برنامک را از داخل ایتا باز کنید. ورود با حساب ایتای شما انجام می‌شود.</p>
+<div id="loginStatus" class="status">در حال بررسی اتصال به ایتا...</div>
+<button id="loginButton" type="button" class="hidden">ورود با ایتا</button>
+</section>
+<section id="memberPanel" class="hidden">
+<div class="panel">
+<div id="memberName" style="font-weight:bold;color:#075c3c"></div>
+<div class="hint">فعالیت‌های امروز خود را انتخاب و ثبت کنید.</div>
+<button id="logoutButton" class="secondary" type="button">خروج از حساب</button>
+</div>
+<h3 class="section-title">🌱 فعالیت‌های پیشنهادی امروز</h3>
+<div id="activities"></div>
+<section class="progress">
+<p>میزان فعالیت امروز: <strong id="count">۰</strong></p>
+<div class="track"><div class="fill" id="fill"></div></div>
+</section>
+<button id="saveButton" type="button">ثبت فعالیت‌های امروز</button>
+</section>
+<p class="note">هر قدم نیک، قدمی در مسیر بندگی خداوند است.<br>اللهم عجل لولیک الفرج</p>
 </main>
-
-<footer>
-  هیئت رایةالهدی | برنامک یاران امام زمان (عج)
-</footer>
-
+<footer>هیئت رایةالهدی | برنامک یاران امام زمان (عج)</footer>
 <script>
-const tasks = document.querySelectorAll('.task');
-
+const SUPABASE_URL = 'https://kymszknggtztnkavcfgx.supabase.co';
+const SUPABASE_PUBLIC_KEY = 'sb_publishable_iOCQ4MT7v5RKSqDs2X25Wg_XX5bdpkl';
+const LOGIN_FUNCTION_URL = SUPABASE_URL + '/functions/v1/eitaa-login';
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+const $ = id => document.getElementById(id);
+const dateKey = () => {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+};
+$('today').textContent = 'امروز: ' + new Date().toLocaleDateString('fa-IR');
+let activities = [];
+let selected = new Set();
+let currentUser = null;
+function status(message,error=false){
+  $('loginStatus').textContent=message;
+  $('loginStatus').className='status'+(error?' error':'');
+}
 function updateProgress(){
-  const done = [...tasks].filter(t=>t.checked).length;
-  document.getElementById('count').textContent =
-    done.toLocaleString('fa-IR') + ' از ۶';
-  document.getElementById('fill').style.width =
-    (done/6*100)+'%';
+  const done=selected.size;
+  $('count').textContent=done.toLocaleString('fa-IR')+' از '+activities.length.toLocaleString('fa-IR');
+  $('fill').style.width=(activities.length?done/activities.length*100:0)+'%';
 }
-
-tasks.forEach(t=>t.addEventListener('change',updateProgress));
-
-function submitTasks(){
-  const done = [...tasks].filter(t=>t.checked).length;
-  if(done===0){
-    alert('لطفاً حداقل یک فعالیت را انتخاب کنید.');
-    return;
-  }
-  alert('آفرین! '+done.toLocaleString('fa-IR')+
-  ' فعالیت را انتخاب کردید. خداوند از شما قبول کند. 🌹');
+function renderActivities(){
+  const root=$('activities');root.innerHTML='';
+  activities.forEach(a=>{
+    const item=document.createElement('div');item.className='activity';
+    const check=document.createElement('input');check.type='checkbox';check.checked=selected.has(a.id);
+    check.id='activity-'+a.id;
+    check.addEventListener('change',()=>{if(check.checked)selected.add(a.id);else selected.delete(a.id);updateProgress();});
+    const label=document.createElement('label');label.htmlFor=check.id;label.textContent=a.title;
+    if(a.description){const small=document.createElement('small');small.textContent=a.description;label.appendChild(small);}
+    item.append(check,label);root.appendChild(item);
+  });
+  updateProgress();
 }
-
-document.getElementById('today').textContent =
-  'امروز: '+new Date().toLocaleDateString('fa-IR');
-
+async function loadMember(){
+  const {data:{user},error}=await db.auth.getUser();
+  if(error||!user){$('loginPanel').classList.remove('hidden');$('memberPanel').classList.add('hidden');return;}
+  currentUser=user;
+  const {data:profile}=await db.from('profiles').select('full_name,username,role').eq('id',user.id).maybeSingle();
+  $('memberName').textContent='خوش آمدید'+(profile?.full_name?'، '+profile.full_name:'');
+  const {data:acts,error:actsError}=await db.from('activities').select('id,title,description').eq('active',true).order('sort_order');
+  if(actsError)throw actsError;
+  activities=acts||[];
+  const {data:logs,error:logsError}=await db.from('daily_logs').select('activity_id').eq('user_id',user.id).eq('activity_date',dateKey());
+  if(logsError)throw logsError;
+  selected=new Set((logs||[]).map(x=>x.activity_id));
+  renderActivities();
+  $('loginPanel').classList.add('hidden');$('memberPanel').classList.remove('hidden');
+  if(!activities.length)status('هنوز فعالیتی در سامانه تعریف نشده است.',true);
+}
+async function loginWithEitaa(){
+  const webapp=window.Eitaa&&window.Eitaa.WebApp;
+  const initData=webapp&&webapp.initData;
+  if(!initData){status('اطلاعات ورود ایتا دریافت نشد. لطفاً برنامک را از داخل ایتا باز کنید.',true);return;}
+  $('loginButton').disabled=true;status('در حال بررسی هویت شما...');
+  try{
+    const response=await fetch(LOGIN_FUNCTION_URL,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLIC_KEY},body:JSON.stringify({initData})});
+    const result=await response.json();
+    if(!response.ok)throw new Error(result.error||'ورود انجام نشد.');
+    const {error}=await db.auth.verifyOtp({token_hash:result.token_hash,type:result.type||'magiclink'});
+    if(error)throw error;
+    await loadMember();
+  }catch(e){status(e.message||'خطا در ورود. دوباره تلاش کنید.',true);}
+  finally{$('loginButton').disabled=false;}
+}
+$('loginButton').addEventListener('click',loginWithEitaa);
+$('saveButton').addEventListener('click',async()=>{
+  if(!currentUser)return;
+  if(!selected.size){alert('لطفاً حداقل یک فعالیت را انتخاب کنید.');return;}
+  $('saveButton').disabled=true;
+  try{
+    const rows=[...selected].map(activity_id=>({user_id:currentUser.id,activity_id,activity_date:dateKey()}));
+    const {error}=await db.from('daily_logs').upsert(rows,{onConflict:'user_id,activity_id,activity_date',ignoreDuplicates:true});
+    if(error)throw error;
+    alert('فعالیت‌های امروز با موفقیت ثبت شد. خداوند از شما قبول کند. 🌹');
+  }catch(e){alert('ثبت فعالیت انجام نشد: '+(e.message||'خطای نامشخص'));}
+  finally{$('saveButton').disabled=false;}
+});
+$('logoutButton').addEventListener('click',async()=>{
+  await db.auth.signOut();currentUser=null;selected.clear();
+  $('memberPanel').classList.add('hidden');$('loginPanel').classList.remove('hidden');
+  status('از حساب خارج شدید. برای ورود دوباره از داخل ایتا اقدام کنید.');
+});
+async function start(){
+  try{
+    const webapp=window.Eitaa&&window.Eitaa.WebApp;
+    if(webapp&&webapp.ready)webapp.ready();
+    if(webapp&&webapp.initData){
+      $('loginButton').classList.remove('hidden');
+      status('اتصال به ایتا برقرار است. برای ورود دکمه زیر را بزنید.');
+    }else{
+      status('برای ورود، این برنامک را از داخل ایتا باز کنید.',true);
+    }
+    await loadMember();
+  }catch(e){status(e.message||'خطا در دریافت اطلاعات.',true);}
+}
+start();
 </script>
 </body>
 </html>
