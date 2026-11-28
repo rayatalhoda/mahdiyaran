@@ -133,6 +133,16 @@ footer{
   padding:18px;
   font-size:12px;
 }
+
+.tabs{display:flex;gap:9px;margin:12px 0}
+.tabs .tab{width:50%;background:#e5eee7;color:#075c3c;padding:13px 8px;font-size:14px}
+.tabs .tab.active{background:#08734a;color:white}
+.activity-panel{background:#f8faf7;border-radius:16px;padding:12px;margin-bottom:12px}
+.panel-intro{font-size:13px;color:#66756a;line-height:2;margin:3px 4px 12px}
+.add-activity{display:flex;gap:8px;margin-top:12px}
+.add-activity input{min-width:0;flex:1;border:1px solid #dce5dc;border-radius:11px;padding:12px;font-family:inherit;font-size:13px}
+.add-activity .add-button{width:82px;padding:10px;font-size:13px}
+.storage-note{font-size:11px;color:#7c887e;line-height:2;text-align:center;margin:12px 4px}
 </style>
 <script src="https://developer.eitaa.com/eitaa-web-app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -156,67 +166,48 @@ footer{
     <p id="authStatus" role="status" aria-live="polite">در حال آماده‌سازی ورود امن...</p>
   </section>
 
-  <h3 class="section-title">🌱 فعالیت‌های پیشنهادی امروز</h3>
-
-  <div id="activities">
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>خواندن دعای فرج
-        <small>برای سلامتی و ظهور امام زمان (عج)</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>قرائت قرآن کریم
-        <small>حداقل چند آیه با توجه و تدبر</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>صدقه برای سلامتی امام زمان (عج)
-        <small>به نیت سلامتی و تعجیل در فرج</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>ترک یک گناه
-        <small>یک قدم برای اصلاح رفتار و اخلاق</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>خدمت به پدر و مادر یا دیگران
-        <small>با یک کار خوب و محبت‌آمیز</small>
-      </label>
-    </div>
-
-    <div class="activity">
-      <input type="checkbox" class="task">
-      <label>فرستادن صلوات
-        <small>به نیت تعجیل در فرج</small>
-      </label>
-    </div>
+  <h3 class="section-title">🌿 برنامهٔ روزانهٔ من</h3>
+  <div class="tabs" role="tablist" aria-label="نوع فعالیت">
+    <button type="button" class="tab active" id="doingTab" onclick="showTab('doing')">انجام می‌دهم</button>
+    <button type="button" class="tab" id="quittingTab" onclick="showTab('quitting')">ترک می‌کنم</button>
   </div>
 
-  <section class="progress">
-    <p>میزان فعالیت امروز: <strong id="count">۰ از ۶</strong></p>
-    <div class="track">
-      <div class="fill" id="fill"></div>
+  <section id="doingPanel" class="activity-panel">
+    <p class="panel-intro">کارهای خوبی را که می‌خواهی انجام بدهی انتخاب کن:</p>
+    <div id="doingActivities">
+      <div class="activity"><input type="checkbox" class="task"><label>خواندن دعای فرج<small>برای سلامتی و ظهور امام زمان (عج)</small></label></div>
+      <div class="activity"><input type="checkbox" class="task"><label>قرائت قرآن کریم<small>چند آیه با توجه و تدبر</small></label></div>
+      <div class="activity"><input type="checkbox" class="task"><label>صدقه برای سلامتی امام زمان (عج)<small>به نیت سلامتی و تعجیل در فرج</small></label></div>
+      <div class="activity"><input type="checkbox" class="task"><label>خدمت به پدر و مادر یا دیگران<small>با یک کار خوب و محبت‌آمیز</small></label></div>
+      <div class="activity"><input type="checkbox" class="task"><label>فرستادن صلوات<small>به نیت تعجیل در فرج</small></label></div>
+    </div>
+    <div class="add-activity">
+      <input id="newDoing" type="text" maxlength="70" placeholder="فعالیت خوب دلخواه من...">
+      <button type="button" class="add-button" onclick="addActivity('doing')">افزودن</button>
     </div>
   </section>
 
-  <button style="margin-top:18px" onclick="submitTasks()">
-    ثبت فعالیت‌های امروز
-  </button>
+  <section id="quittingPanel" class="activity-panel" hidden>
+    <p class="panel-intro">عادت یا رفتاری را که تصمیم به ترک آن داری انتخاب کن. بدون سرزنش؛ هر روز فرصت تازه‌ای است.</p>
+    <div id="quittingActivities">
+      <div class="activity"><input type="checkbox" class="task"><label>ترک غیبت<small>مراقبت از زبان و آبروی دیگران</small></label></div>
+      <div class="activity"><input type="checkbox" class="task"><label>ترک دروغ<small>تمرین راست‌گویی</small></label></div>
+      <div class="activity"><input type="checkbox" class="task"><label>کنترل خشم<small>مکث و آرامش پیش از واکنش</small></label></div>
+      <div class="activity"><input type="checkbox" class="task"><label>پرهیز از اسراف<small>استفادهٔ درست از نعمت‌ها</small></label></div>
+    </div>
+    <div class="add-activity">
+      <input id="newQuitting" type="text" maxlength="70" placeholder="عادت یا رفتار دلخواه برای ترک...">
+      <button type="button" class="add-button" onclick="addActivity('quitting')">افزودن</button>
+    </div>
+  </section>
 
-  <p class="note">
-    هر قدم نیک، قدمی در مسیر بندگی خداوند است.<br>
-    اللهم عجل لولیک الفرج
-  </p>
+  <section class="progress">
+    <p>انتخاب‌های امروز: <strong id="count">۰</strong></p>
+    <div class="track"><div class="fill" id="fill"></div></div>
+  </section>
+  <p class="storage-note">این نسخه برای تکمیل ظاهر و انتخاب فعالیت‌هاست؛ ذخیرهٔ دائمی و گزارش سوابق در مرحلهٔ اتصال پایگاه داده فعال می‌شود.</p>
+
+  <p class="note">هر قدم نیک، قدمی در مسیر بندگی خداوند است.<br>اللهم عجل لولیک الفرج</p>
 </main>
 
 <footer>
@@ -281,27 +272,45 @@ async function loginWithEitaa() {
 
 loginWithEitaa();
 
-const tasks = document.querySelectorAll('.task');
+function showTab(tab){
+  const doing = tab === 'doing';
+  document.getElementById('doingPanel').hidden = !doing;
+  document.getElementById('quittingPanel').hidden = doing;
+  document.getElementById('doingTab').classList.toggle('active',doing);
+  document.getElementById('quittingTab').classList.toggle('active',!doing);
+}
+
+function addActivity(type){
+  const input = document.getElementById(type === 'doing' ? 'newDoing' : 'newQuitting');
+  const name = input.value.trim();
+  if(!name){ alert('لطفاً نام فعالیت را بنویسید.'); return; }
+  const list = document.getElementById(type === 'doing' ? 'doingActivities' : 'quittingActivities');
+  const item = document.createElement('div');
+  item.className = 'activity';
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.className = 'task';
+  checkbox.addEventListener('change',updateProgress);
+  const label = document.createElement('label');
+  label.appendChild(document.createTextNode(name));
+  item.appendChild(checkbox);
+  item.appendChild(label);
+  list.appendChild(item);
+  input.value = '';
+  updateProgress();
+}
 
 function updateProgress(){
+  const tasks = document.querySelectorAll('.task');
   const done = [...tasks].filter(t=>t.checked).length;
-  document.getElementById('count').textContent =
-    done.toLocaleString('fa-IR') + ' از ۶';
-  document.getElementById('fill').style.width =
-    (done/6*100)+'%';
+  document.getElementById('count').textContent = done.toLocaleString('fa-IR');
+  document.getElementById('fill').style.width = (tasks.length ? done/tasks.length*100 : 0)+'%';
 }
 
-tasks.forEach(t=>t.addEventListener('change',updateProgress));
-
-function submitTasks(){
-  const done = [...tasks].filter(t=>t.checked).length;
-  if(done===0){
-    alert('لطفاً حداقل یک فعالیت را انتخاب کنید.');
-    return;
-  }
-  alert('آفرین! '+done.toLocaleString('fa-IR')+
-  ' فعالیت را انتخاب کردید. خداوند از شما قبول کند. 🌹');
-}
+document.querySelectorAll('.task').forEach(t=>t.addEventListener('change',updateProgress));
+document.getElementById('newDoing').addEventListener('keydown',e=>{if(e.key==='Enter')addActivity('doing')});
+document.getElementById('newQuitting').addEventListener('keydown',e=>{if(e.key==='Enter')addActivity('quitting')});
+updateProgress();
 
 document.getElementById('today').textContent =
   'امروز: '+new Date().toLocaleDateString('fa-IR');
