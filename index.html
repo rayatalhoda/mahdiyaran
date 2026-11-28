@@ -135,6 +135,7 @@ footer{
 }
 </style>
 <script src="https://developer.eitaa.com/eitaa-web-app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -151,6 +152,9 @@ footer{
     <div class="date" id="today"></div>
   </section>
 
+  <section class="progress" style="margin-top:15px">
+    <p id="authStatus" role="status" aria-live="polite">در حال آماده‌سازی ورود امن...</p>
+  </section>
 
   <h3 class="section-title">🌱 فعالیت‌های پیشنهادی امروز</h3>
 
@@ -220,6 +224,55 @@ footer{
 </footer>
 
 <script>
+const SUPABASE_URL = 'https://kymszknggtztnkavcfgx.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_iOCQ4MT7v5RKSqDs2X25Wg_XX5bdpkl';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const authStatus = document.getElementById('authStatus');
+
+async function loginWithEitaa() {
+  try {
+    const webApp = window.Eitaa && window.Eitaa.WebApp;
+    if (webApp && typeof webApp.ready === 'function') webApp.ready();
+    if (webApp && typeof webApp.expand === 'function') webApp.expand();
+
+    const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+    if (sessionError) throw sessionError;
+    if (sessionData.session) {
+      authStatus.textContent = 'ورود شما با موفقیت انجام شده است.';
+      return;
+    }
+
+    const initData = webApp && webApp.initData;
+    if (!initData) {
+      authStatus.textContent = 'برای ورود امن، برنامک را از داخل ایتا باز کنید.';
+      return;
+    }
+
+    authStatus.textContent = 'در حال بررسی هویت شما...';
+    const { data, error } = await supabaseClient.functions.invoke('eitaa-login', {
+      body: { initData }
+    });
+    if (error) throw error;
+    if (!data || !data.success || !data.token_hash) {
+      throw new Error('پاسخ ورود از سرور کامل نیست.');
+    }
+
+    const { data: verified, error: verifyError } = await supabaseClient.auth.verifyOtp({
+      token_hash: data.token_hash,
+      type: data.type || 'magiclink'
+    });
+    if (verifyError) throw verifyError;
+    if (!verified.session) throw new Error('نشست کاربری ایجاد نشد.');
+
+    authStatus.textContent = 'ورود شما با موفقیت انجام شد. خدا قوت!';
+  } catch (error) {
+    console.error('Eitaa login error:', error);
+    authStatus.textContent = 'ورود انجام نشد. لطفاً بعداً دوباره تلاش کنید.';
+  }
+}
+
+loginWithEitaa();
+
 const tasks = document.querySelectorAll('.task');
 
 function updateProgress(){
