@@ -249,10 +249,18 @@ async function loginWithEitaa() {
     }
 
     authStatus.textContent = 'در حال بررسی هویت شما...';
-    const { data, error } = await supabaseClient.functions.invoke('eitaa-login', {
-      body: { initData }
+    const loginResponse = await fetch(SUPABASE_URL + '/functions/v1/eitaa-login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_PUBLISHABLE_KEY
+      },
+      body: JSON.stringify({ initData })
     });
-    if (error) throw error;
+    const data = await loginResponse.json().catch(() => null);
+    if (!loginResponse.ok) {
+      throw new Error((data && data.error) || ('خطای سرور: ' + loginResponse.status));
+    }
     if (!data || !data.success || !data.token_hash) {
       throw new Error('پاسخ ورود از سرور کامل نیست.');
     }
